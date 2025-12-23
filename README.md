@@ -2,29 +2,6 @@
 
 A modern, responsive portfolio website featuring resume display and professional links.
 
-## Features
-
-- **Modern Design**: Clean, professional interface with smooth animations
-- **Resume Display**: Embedded PDF viewer with download option
-- **Social Links**: Direct links to LinkedIn and GitHub profiles
-- **Responsive**: Fully responsive design that works on all devices
-- **Fast Loading**: Optimized for performance
-- **SEO Friendly**: Proper meta tags and semantic HTML
-
-## File Structure
-
-```
-website/
-├── index.html          # Home page
-├── resume.html         # Resume page
-├── projects.html       # Projects page
-├── contact.html        # Contact page
-├── styles.css          # Stylesheet
-├── script.js           # JavaScript for interactivity
-├── CWrightResume (1).pdf  # Resume PDF
-└── README.md           # This file
-```
-
 ## Pages
 
 - **Home** (`index.html`) - Landing page with an about summary
