@@ -83,15 +83,17 @@ For deploying on your own home server with a custom domain, see the comprehensiv
 - Dynamic DNS for dynamic IP addresses
 - Troubleshooting and maintenance
 
-### Option 1: GitHub Pages (Free)
+### Option 1: GitHub Pages (Free) - Recommended
 
-1. Create a new repository on GitHub
-2. Push all files to the repository
-3. Go to Settings > Pages
-4. Select the main branch as the source
-5. Your site will be available at `https://yourusername.github.io/repository-name`
+**See the detailed [GitHub Pages Deployment Guide](GITHUB_PAGES_GUIDE.md) for step-by-step instructions.**
 
-**Note**: Make sure your PDF file is included in the repository.
+Quick start:
+1. Create a repository named `yourusername.github.io` on GitHub
+2. Push your files to the repository
+3. Enable GitHub Pages in repository Settings
+4. Your site will be live at `https://yourusername.github.io`
+
+**Note**: Make sure your PDF file is included in the repository. See [GitHub Pages Guide](GITHUB_PAGES_GUIDE.md) for detailed instructions.
 
 ### Option 2: Netlify (Free)
 
@@ -200,6 +202,16 @@ Edit the CSS variables in `styles.css`:
 1. Add a new `<section>` in `index.html`
 2. Add corresponding navigation link
 3. Style as needed in `styles.css`
+
+## Making Your Website Unique
+
+Looking for ideas to make your portfolio stand out? Check out the **[Uniqueness Recommendations Guide](UNIQUENESS_RECOMMENDATIONS.md)** for:
+- Visual design enhancements (dark mode, animations, custom themes)
+- Interactive elements and advanced features
+- Personal branding ideas
+- Content suggestions
+- Implementation priorities
+- Resources and inspiration
 
 ## License
 
