@@ -27,7 +27,7 @@ website/
 
 ## Pages
 
-- **Home** (`index.html`) - Landing page with hero section and about summary
+- **Home** (`index.html`) - Landing page with an about summary
 - **Resume** (`resume.html`) - Embedded PDF resume viewer
 - **Projects** (`projects.html`) - Showcase of personal projects
 - **Contact** (`contact.html`) - Contact information and links
