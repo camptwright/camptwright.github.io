@@ -40,10 +40,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const projectCards = document.querySelectorAll('.project-card');
     
     sections.forEach(section => {
-        section.style.opacity = '0';
-        section.style.transform = 'translateY(20px)';
-        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(section);
+        // Check if section is already visible (for resume page with lots of content)
+        const isResumeSection = section.classList.contains('resume-section');
+        if (!isResumeSection) {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        } else {
+            // Resume section should be visible immediately
+            section.style.opacity = '1';
+            section.style.transform = 'translateY(0)';
+        }
     });
 
     projectCards.forEach((card, index) => {

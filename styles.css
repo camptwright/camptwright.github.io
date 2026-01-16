@@ -235,6 +235,8 @@ section {
     background: var(--bg-secondary);
     padding: 5rem 0;
     min-height: calc(100vh - 200px);
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 .resume-details {
@@ -244,6 +246,8 @@ section {
     border-radius: 12px;
     box-shadow: var(--shadow-lg);
     padding: 3rem;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 .resume-detail-section {
@@ -325,10 +329,15 @@ section {
     margin-bottom: 0;
 }
 
-.resume-item-list li[style*="list-style: none"] {
-    padding-left: 1.5rem;
-    margin-left: 0;
+.coursework-subitem {
+    list-style: none !important;
+    padding-left: 1.5rem !important;
+    margin-top: 0.5rem;
     color: var(--text-secondary);
+}
+
+.coursework-subitem:first-of-type {
+    margin-top: 0.5rem;
 }
 
 /* Skills Section */
