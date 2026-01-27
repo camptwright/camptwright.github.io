@@ -1,7 +1,5 @@
 # Campbell Wright - Portfolio Website
 
-A modern, responsive portfolio website featuring resume display and professional links.
-
 ## Pages
 
 - **Home** (`index.html`) - Landing page with an about summary
