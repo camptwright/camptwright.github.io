@@ -27,82 +27,75 @@
         <section class="projects-section">
             <div class="container">
                 <h1 class="section-title">Projects</h1>
-                <p class="section-subtitle">A collection of my recent work and side projects</p>
+                <p class="section-subtitle">A collection of my recent work and side projects - click any card for more details</p>
                 
                 <div class="projects-grid">
-                    <div class="project-card">
+                    <!-- Fantasy Sports Probability Calculator -->
+                    <div class="project-card" onclick="openProjectModal('fantasy-probabilities')">
                         <div class="project-header">
-                            <h3 class="project-title">Fantasy Probabilities</h3>
-                            <span class="project-badge">Data Analysis</span>
-                        </div>
-                        <p class="project-description">
-                            A data-driven application for analyzing fantasy sports probabilities and statistics.
-                        </p>
-                        <div class="project-links">
-                            <a href="https://github.com/camptwright/fantasy-probabilities" target="_blank" rel="noopener noreferrer" class="project-link">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                </svg>
-                                View on GitHub
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-header">
-                            <h3 class="project-title">Budget Tracker</h3>
-                            <span class="project-badge">JavaScript</span>
-                        </div>
-                        <p class="project-description">
-                            A web application for tracking personal finances and budgeting with an intuitive interface.
-                        </p>
-                        <div class="project-links">
-                            <a href="https://github.com/camptwright/budget-tracker" target="_blank" rel="noopener noreferrer" class="project-link">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                </svg>
-                                View on GitHub
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-header">
-                            <h3 class="project-title">Fitness Tracker App</h3>
-                            <span class="project-badge">TypeScript</span>
-                        </div>
-                        <p class="project-description">
-                            A TypeScript-based fitness tracking application for monitoring workouts and progress.
-                        </p>
-                        <div class="project-links">
-                            <a href="https://github.com/camptwright/fitness-tracker-app" target="_blank" rel="noopener noreferrer" class="project-link">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                </svg>
-                                View on GitHub
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-header">
-                            <h3 class="project-title">Gyro Matrix Display</h3>
+                            <h3 class="project-title">Fantasy Sports Probability Calculator</h3>
                             <span class="project-badge">Python</span>
                         </div>
                         <p class="project-description">
-                            A Python application that drives an LED matrix display using a gyroscope sensor as the controller.
+                            A Python application to analyze historical sports data and generate probabilistic performance predictions.
                         </p>
-                        <div class="project-links">
-                            <a href="https://github.com/camptwright/gyro-matrix-display" target="_blank" rel="noopener noreferrer" class="project-link">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                </svg>
-                                View on GitHub
-                            </a>
+                        <div class="project-tech-tags">
+                            <span class="project-tech-tag">Python</span>
+                            <span class="project-tech-tag">Statistics</span>
+                            <span class="project-tech-tag">Data Analysis</span>
                         </div>
                     </div>
 
-                    <div class="project-card">
+                    <!-- Fitness Tracker iOS & Web Application -->
+                    <div class="project-card" onclick="openProjectModal('fitness-tracker')">
+                        <div class="project-header">
+                            <h3 class="project-title">Fitness Tracker iOS & Web App</h3>
+                            <span class="project-badge">React</span>
+                        </div>
+                        <p class="project-description">
+                            A React-based web application to track workouts, caloric intake, and fitness progress with REST APIs.
+                        </p>
+                        <div class="project-tech-tags">
+                            <span class="project-tech-tag">React</span>
+                            <span class="project-tech-tag">REST APIs</span>
+                            <span class="project-tech-tag">Data Storage</span>
+                        </div>
+                    </div>
+
+                    <!-- Gyroscope-Controlled Sports & Stock Ticker -->
+                    <div class="project-card" onclick="openProjectModal('gyro-ticker')">
+                        <div class="project-header">
+                            <h3 class="project-title">Gyroscope-Controlled Sports & Stock Ticker</h3>
+                            <span class="project-badge">Embedded Systems</span>
+                        </div>
+                        <p class="project-description">
+                            An embedded system controlled via gyroscopic input to navigate real-time sports and financial data.
+                        </p>
+                        <div class="project-tech-tags">
+                            <span class="project-tech-tag">Python</span>
+                            <span class="project-tech-tag">Hardware</span>
+                            <span class="project-tech-tag">APIs</span>
+                        </div>
+                    </div>
+
+                    <!-- Personal Home Server -->
+                    <div class="project-card" onclick="openProjectModal('home-server')">
+                        <div class="project-header">
+                            <h3 class="project-title">Personal Home Server</h3>
+                            <span class="project-badge">Linux</span>
+                        </div>
+                        <p class="project-description">
+                            A Linux-based home server for web development, testing, and database hosting with full security management.
+                        </p>
+                        <div class="project-tech-tags">
+                            <span class="project-tech-tag">Linux</span>
+                            <span class="project-tech-tag">System Admin</span>
+                            <span class="project-tech-tag">Web Dev</span>
+                        </div>
+                    </div>
+
+                    <!-- Portfolio Website -->
+                    <div class="project-card" onclick="openProjectModal('portfolio')">
                         <div class="project-header">
                             <h3 class="project-title">Portfolio Website</h3>
                             <span class="project-badge">Web Development</span>
@@ -110,13 +103,26 @@
                         <p class="project-description">
                             A modern, responsive portfolio website showcasing my work and professional experience.
                         </p>
-                        <div class="project-links">
-                            <a href="https://github.com/camptwright/website" target="_blank" rel="noopener noreferrer" class="project-link">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                                </svg>
-                                View on GitHub
-                            </a>
+                        <div class="project-tech-tags">
+                            <span class="project-tech-tag">HTML</span>
+                            <span class="project-tech-tag">CSS</span>
+                            <span class="project-tech-tag">JavaScript</span>
+                        </div>
+                    </div>
+
+                    <!-- Budget Tracker -->
+                    <div class="project-card" onclick="openProjectModal('budget-tracker')">
+                        <div class="project-header">
+                            <h3 class="project-title">Budget Tracker</h3>
+                            <span class="project-badge">JavaScript</span>
+                        </div>
+                        <p class="project-description">
+                            A web application for tracking personal finances and budgeting with an intuitive interface.
+                        </p>
+                        <div class="project-tech-tags">
+                            <span class="project-tech-tag">JavaScript</span>
+                            <span class="project-tech-tag">HTML/CSS</span>
+                            <span class="project-tech-tag">Web Dev</span>
                         </div>
                     </div>
                 </div>
@@ -128,6 +134,89 @@
         </section>
     </main>
 
+    <!-- Project Modal -->
+    <div class="project-modal-overlay" id="projectModal">
+        <div class="project-modal">
+            <button class="project-modal-close" onclick="closeProjectModal()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="project-modal-header">
+                <h2 class="project-modal-title" id="modalTitle">Project Title</h2>
+                <div class="project-modal-badges" id="modalBadges"></div>
+            </div>
+            <div class="project-modal-body">
+                <div class="project-modal-section">
+                    <h3 class="project-modal-section-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                        </svg>
+                        Overview
+                    </h3>
+                    <p class="project-modal-description" id="modalDescription"></p>
+                </div>
+                
+                <div class="project-modal-section">
+                    <h3 class="project-modal-section-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        Key Features
+                    </h3>
+                    <ul class="project-modal-list" id="modalFeatures"></ul>
+                </div>
+
+                <div class="project-modal-section">
+                    <h3 class="project-modal-section-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                        How It Was Made
+                    </h3>
+                    <p class="project-modal-description" id="modalProcess"></p>
+                </div>
+
+                <div class="project-modal-section">
+                    <h3 class="project-modal-section-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="16 18 22 12 16 6"></polyline>
+                            <polyline points="8 6 2 12 8 18"></polyline>
+                        </svg>
+                        Technologies Used
+                    </h3>
+                    <div class="project-modal-tech" id="modalTech"></div>
+                </div>
+
+                <!-- YouTube Video Section (Commented Out - Uncomment and add video ID when ready) -->
+                <!--
+                <div class="project-modal-section" id="modalVideoSection">
+                    <h3 class="project-modal-section-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                        </svg>
+                        Project Demo
+                    </h3>
+                    <div class="project-video-container">
+                        <iframe 
+                            id="modalVideo"
+                            src="" 
+                            title="Project Demo Video"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                -->
+            </div>
+        </div>
+    </div>
+
     <footer class="footer">
         <div class="container">
             <p>&copy; 2025 Campbell Wright. All rights reserved.</p>
@@ -135,6 +224,179 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Project data with detailed information
+        const projectData = {
+            'fantasy-probabilities': {
+                title: 'Fantasy Sports Probability Calculator',
+                badges: ['Python', 'Data Analysis', 'Statistics'],
+                description: 'A Python application designed to analyze historical sports data and generate probabilistic performance predictions. This tool helps fantasy sports enthusiasts make data-driven decisions by forecasting player performance and scoring trends.',
+                features: [
+                    'Analyzes historical sports data from multiple seasons',
+                    'Generates probabilistic performance predictions using statistical models',
+                    'Forecasts player scoring trends and game outcomes',
+                    'Provides visual reports and data exports for analysis',
+                    'Supports multiple sports leagues and fantasy formats'
+                ],
+                process: 'Built using Python with libraries like pandas for data manipulation and scipy/numpy for statistical analysis. The application pulls historical data, cleans and normalizes it, then applies statistical models including regression analysis and probability distributions to generate predictions. The modular architecture allows easy addition of new sports and prediction models.',
+                tech: ['Python', 'pandas', 'NumPy', 'SciPy', 'Matplotlib', 'Data Visualization'],
+                // Uncomment and add YouTube video ID when ready:
+                // videoId: 'YOUR_VIDEO_ID_HERE'
+            },
+            'fitness-tracker': {
+                title: 'Fitness Tracker iOS & Web Application',
+                badges: ['React', 'REST APIs', 'Full-Stack'],
+                description: 'A comprehensive React-based web application designed to track workouts, monitor caloric intake, and visualize fitness progress over time. The app features persistent data storage and analytics to help users achieve their fitness goals.',
+                features: [
+                    'Track workouts with detailed exercise logging',
+                    'Monitor caloric intake and nutritional data',
+                    'Visualize fitness progress with interactive charts',
+                    'Set and track personal fitness goals',
+                    'REST API integration for data persistence',
+                    'Responsive design for mobile and desktop use'
+                ],
+                process: 'Developed using React for the frontend with a component-based architecture for reusability. Implemented REST APIs for CRUD operations on workout and nutrition data. Used state management for real-time UI updates and local storage for data persistence. The application follows responsive design principles to ensure a seamless experience across devices.',
+                tech: ['React', 'JavaScript', 'REST APIs', 'CSS3', 'Local Storage', 'Chart.js'],
+                // videoId: 'YOUR_VIDEO_ID_HERE'
+            },
+            'gyro-ticker': {
+                title: 'Gyroscope-Controlled Sports & Stock Ticker',
+                badges: ['Embedded Systems', 'Python', 'Hardware'],
+                description: 'An innovative embedded system that uses gyroscopic input to navigate and display real-time sports scores and financial market data. The system features a custom LED matrix display with low-latency data updates.',
+                features: [
+                    'Gyroscope-based navigation for hands-free control',
+                    'Real-time sports scores from live APIs',
+                    'Live stock market and financial data display',
+                    'Custom LED matrix display output',
+                    'Low-latency data updates and optimized display',
+                    'Modular design for easy customization'
+                ],
+                process: 'Designed and implemented using Python with hardware integration libraries. The gyroscope sensor provides input that is processed to navigate between different data views. Live APIs are polled at optimized intervals to fetch sports and financial data, which is then rendered on the LED matrix display. Careful attention was paid to latency optimization and power management.',
+                tech: ['Python', 'Embedded Systems', 'APIs', 'Hardware Integration', 'Gyroscope Sensor', 'LED Matrix'],
+                // videoId: 'YOUR_VIDEO_ID_HERE'
+            },
+            'home-server': {
+                title: 'Personal Home Server',
+                badges: ['Linux', 'System Administration', 'DevOps'],
+                description: 'A Linux-based home server configured for web development, application testing, and database hosting. Includes comprehensive security measures and maintenance protocols for reliable 24/7 operation.',
+                features: [
+                    'Web development and testing environment',
+                    'Database hosting with MySQL/PostgreSQL',
+                    'Web application deployment and hosting',
+                    'Comprehensive security configuration',
+                    'Automated backup systems',
+                    'Remote access and management capabilities'
+                ],
+                process: 'Set up on dedicated hardware with a Linux distribution optimized for server use. Configured web servers (Apache/Nginx), database servers, and development environments. Implemented security measures including firewall rules, SSH hardening, and regular updates. Established backup routines and monitoring for system health and security.',
+                tech: ['Linux', 'Apache/Nginx', 'MySQL', 'PostgreSQL', 'SSH', 'Bash Scripting', 'Docker'],
+                // videoId: 'YOUR_VIDEO_ID_HERE'
+            },
+            'portfolio': {
+                title: 'Portfolio Website',
+                badges: ['Web Development', 'HTML/CSS', 'JavaScript'],
+                description: 'A modern, responsive portfolio website built from scratch to showcase professional work, projects, and experience. Features clean design, smooth animations, and optimal performance across all devices.',
+                features: [
+                    'Fully responsive design for all screen sizes',
+                    'Modern UI with smooth animations and transitions',
+                    'Interactive project showcase with modal details',
+                    'Integrated resume viewer with PDF support',
+                    'SEO optimized for better discoverability',
+                    'Fast loading with optimized assets'
+                ],
+                process: 'Built using vanilla HTML, CSS, and JavaScript for maximum performance and minimal dependencies. Implemented CSS Grid and Flexbox for responsive layouts, CSS custom properties for theming, and JavaScript for interactive elements. Focused on accessibility, semantic HTML, and progressive enhancement.',
+                tech: ['HTML5', 'CSS3', 'JavaScript', 'Responsive Design', 'CSS Grid', 'CSS Animations'],
+                // videoId: 'YOUR_VIDEO_ID_HERE'
+            },
+            'budget-tracker': {
+                title: 'Budget Tracker',
+                badges: ['JavaScript', 'Web App', 'Finance'],
+                description: 'A web application for tracking personal finances and budgeting with an intuitive, user-friendly interface. Helps users categorize expenses, set budgets, and visualize spending patterns.',
+                features: [
+                    'Expense tracking with categorization',
+                    'Budget creation and monitoring',
+                    'Visual spending reports and charts',
+                    'Income and expense balance tracking',
+                    'Monthly and yearly financial summaries',
+                    'Data export capabilities'
+                ],
+                process: 'Developed using JavaScript with a focus on user experience and financial management best practices. Implemented local storage for data persistence, dynamic UI updates for real-time feedback, and chart libraries for data visualization. The interface was designed to be intuitive enough for users without financial background.',
+                tech: ['JavaScript', 'HTML5', 'CSS3', 'Local Storage', 'Chart.js', 'Responsive Design'],
+                // videoId: 'YOUR_VIDEO_ID_HERE'
+            }
+        };
+
+        function openProjectModal(projectId) {
+            const project = projectData[projectId];
+            if (!project) return;
+
+            // Populate modal content
+            document.getElementById('modalTitle').textContent = project.title;
+            
+            // Badges
+            const badgesContainer = document.getElementById('modalBadges');
+            badgesContainer.innerHTML = project.badges.map(badge => 
+                `<span class="project-badge">${badge}</span>`
+            ).join('');
+
+            // Description
+            document.getElementById('modalDescription').textContent = project.description;
+
+            // Features
+            const featuresContainer = document.getElementById('modalFeatures');
+            featuresContainer.innerHTML = project.features.map(feature => 
+                `<li>${feature}</li>`
+            ).join('');
+
+            // Process
+            document.getElementById('modalProcess').textContent = project.process;
+
+            // Technologies
+            const techContainer = document.getElementById('modalTech');
+            techContainer.innerHTML = project.tech.map(tech => 
+                `<span class="project-modal-tech-tag">${tech}</span>`
+            ).join('');
+
+            // YouTube Video (uncomment when ready to use)
+            /*
+            const videoSection = document.getElementById('modalVideoSection');
+            const videoFrame = document.getElementById('modalVideo');
+            if (project.videoId) {
+                videoFrame.src = `https://www.youtube.com/embed/${project.videoId}`;
+                videoSection.style.display = 'block';
+            } else {
+                videoSection.style.display = 'none';
+            }
+            */
+
+            // Show modal
+            document.getElementById('projectModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeProjectModal() {
+            document.getElementById('projectModal').classList.remove('active');
+            document.body.style.overflow = '';
+            
+            // Stop YouTube video if playing (uncomment when using videos)
+            /*
+            const videoFrame = document.getElementById('modalVideo');
+            videoFrame.src = '';
+            */
+        }
+
+        // Close modal on overlay click
+        document.getElementById('projectModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeProjectModal();
+            }
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeProjectModal();
+            }
+        });
+    </script>
 </body>
 </html>
-
