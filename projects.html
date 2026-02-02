@@ -10,101 +10,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Project Expandable Cards */
+        /* Project Card Styles */
         .project-card {
             cursor: pointer;
-            overflow: hidden;
-        }
-        
-        .project-card-preview {
             padding: 2rem;
         }
         
-        .project-card-details {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease-out;
-            background: var(--bg-tertiary);
-            border-top: 0 solid var(--border-color);
+        .project-card:hover {
+            transform: translateY(-5px);
         }
         
-        .project-card.expanded .project-card-details {
-            max-height: 2000px;
-            border-top-width: 1px;
-            transition: max-height 0.6s ease-in;
-        }
-        
-        .project-card-details-inner {
-            padding: 2rem;
-        }
-        
-        .project-detail-section {
-            margin-bottom: 1.5rem;
-        }
-        
-        .project-detail-section:last-child {
-            margin-bottom: 0;
-        }
-        
-        .project-detail-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            margin-bottom: 0.75rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        
-        .project-detail-title svg {
-            width: 18px;
-            height: 18px;
-            color: var(--primary-color);
-        }
-        
-        .project-detail-text {
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-        
-        .project-detail-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .project-detail-list li {
-            position: relative;
-            padding-left: 1.25rem;
-            margin-bottom: 0.5rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-        }
-        
-        .project-detail-list li::before {
-            content: '▸';
-            position: absolute;
-            left: 0;
-            color: var(--primary-color);
-        }
-        
-        .project-tech-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-        
-        .project-tech-item {
-            background: white;
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
-            padding: 0.4rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-        
-        .expand-indicator {
+        .click-hint {
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -114,24 +30,169 @@
             font-weight: 500;
         }
         
-        .expand-indicator svg {
+        .click-hint svg {
             width: 16px;
             height: 16px;
+        }
+
+        /* Full Screen Modal */
+        .project-modal-backdrop {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .project-modal-backdrop.show {
+            display: flex;
+            opacity: 1;
+        }
+        
+        .project-modal-card {
+            background: white;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.9);
             transition: transform 0.3s ease;
+            position: relative;
         }
         
-        .project-card.expanded .expand-indicator svg {
-            transform: rotate(180deg);
+        .project-modal-backdrop.show .project-modal-card {
+            transform: scale(1);
         }
         
-        /* YouTube Video Placeholder */
-        .project-video-section {
-            margin-top: 1.5rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid var(--border-color);
+        .modal-close-btn {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 44px;
+            height: 44px;
+            border: none;
+            background: var(--bg-tertiary);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            z-index: 10;
         }
         
-        .project-video-container {
+        .modal-close-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .modal-close-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .modal-header {
+            padding: 2.5rem 2.5rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 0 0 1rem 0;
+            padding-right: 3rem;
+        }
+        
+        .modal-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .modal-body {
+            padding: 2.5rem;
+        }
+        
+        .modal-section {
+            margin-bottom: 2rem;
+        }
+        
+        .modal-section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .modal-section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .modal-section-title svg {
+            width: 20px;
+            height: 20px;
+            color: var(--primary-color);
+        }
+        
+        .modal-text {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+        
+        .modal-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .modal-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        
+        .modal-list li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .modal-tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        
+        .modal-tech-item {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        /* Video Container */
+        .modal-video-container {
             position: relative;
             width: 100%;
             padding-bottom: 56.25%;
@@ -140,13 +201,52 @@
             overflow: hidden;
         }
         
-        .project-video-container iframe {
+        .modal-video-container iframe {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             border: none;
+        }
+        
+        /* In Development Status */
+        .status-badge {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary-color), #764ba2);
+            color: white;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .project-modal-backdrop {
+                padding: 1rem;
+            }
+            
+            .project-modal-card {
+                max-height: 95vh;
+            }
+            
+            .modal-header {
+                padding: 2rem 1.5rem 1.5rem;
+            }
+            
+            .modal-title {
+                font-size: 1.5rem;
+            }
+            
+            .modal-body {
+                padding: 1.5rem;
+            }
+            
+            .modal-close-btn {
+                top: 1rem;
+                right: 1rem;
+            }
         }
     </style>
 </head>
@@ -171,414 +271,95 @@
                 
                 <div class="projects-grid">
                     <!-- Fantasy Sports Probability Calculator -->
-                    <div class="project-card" onclick="toggleProject(this)">
-                        <div class="project-card-preview">
+                    <div class="project-card" data-project="fantasy">
                         <div class="project-header">
-                                <h3 class="project-title">Fantasy Sports Probability Calculator</h3>
-                                <span class="project-badge">Python</span>
+                            <h3 class="project-title">Fantasy Sports Probability Calculator</h3>
+                            <span class="project-badge">Python</span>
                         </div>
                         <p class="project-description">
-                                A Python application to analyze historical sports data and generate probabilistic performance predictions for fantasy sports leagues.
-                            </p>
-                            <div class="project-tech-tags">
-                                <span class="project-tech-tag">Python</span>
-                                <span class="project-tech-tag">Statistics</span>
-                                <span class="project-tech-tag">Data Analysis</span>
-                            </div>
-                            <div class="expand-indicator">
-                                <span>View Details</span>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                </svg>
-                            </div>
+                            A Python application to analyze historical sports data and generate probabilistic performance predictions for fantasy sports leagues.
+                        </p>
+                        <div class="project-tech-tags">
+                            <span class="project-tech-tag">Python</span>
+                            <span class="project-tech-tag">Statistics</span>
+                            <span class="project-tech-tag">Data Analysis</span>
                         </div>
-                        <div class="project-card-details">
-                            <div class="project-card-details-inner">
-                                <div class="project-detail-section">
-                                    <h4 class="project-detail-title">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                            <polyline points="14 2 14 8 20 8"></polyline>
-                                        </svg>
-                                        Overview
-                                    </h4>
-                                    <p class="project-detail-text">
-                                        This project analyzes historical fantasy sports data to calculate probability distributions for player performance. Using statistical models and historical trends, it helps fantasy sports enthusiasts make data-driven decisions when drafting players or setting lineups.
-                                    </p>
-                                </div>
-                                <div class="project-detail-section">
-                                    <h4 class="project-detail-title">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                        </svg>
-                                        Key Features
-                                    </h4>
-                                    <ul class="project-detail-list">
-                                        <li>Analyzes historical player performance data across multiple seasons</li>
-                                        <li>Applies statistical models to forecast outcomes and scoring trends</li>
-                                        <li>Generates probability distributions for player point projections</li>
-                                        <li>Supports multiple fantasy sports formats (PPR, Standard, etc.)</li>
-                                        <li>Outputs visual reports and exportable predictions</li>
-                                    </ul>
-                                </div>
-                                <div class="project-detail-section">
-                                    <h4 class="project-detail-title">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                        </svg>
-                                        How It Was Made
-                                    </h4>
-                                    <p class="project-detail-text">
-                                        Built using Python with pandas for data manipulation and scipy/numpy for statistical analysis. The application cleans and normalizes historical data, then applies regression analysis and probability distributions to generate predictions. Matplotlib provides data visualization capabilities.
-                                    </p>
-                                </div>
-                                <div class="project-detail-section">
-                                    <h4 class="project-detail-title">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <polyline points="16 18 22 12 16 6"></polyline>
-                                            <polyline points="8 6 2 12 8 18"></polyline>
-                                        </svg>
-                                        Technologies Used
-                                    </h4>
-                                    <div class="project-tech-list">
-                                        <span class="project-tech-item">Python</span>
-                                        <span class="project-tech-item">pandas</span>
-                                        <span class="project-tech-item">NumPy</span>
-                                        <span class="project-tech-item">SciPy</span>
-                                        <span class="project-tech-item">Matplotlib</span>
-                                    </div>
-                                </div>
-                                <!-- Uncomment to add YouTube video:
-                                <div class="project-video-section">
-                                    <h4 class="project-detail-title">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                                </svg>
-                                        Demo Video
-                                    </h4>
-                                    <div class="project-video-container">
-                                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_HERE" title="Project Demo" allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                                -->
-                            </div>
+                        <div class="click-hint">
+                            <span>Click for details</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
                         </div>
                     </div>
 
                     <!-- Fitness Tracker iOS & Web Application -->
-                    <div class="project-card" onclick="toggleProject(this)">
-                        <div class="project-card-preview">
-                            <div class="project-header">
-                                <h3 class="project-title">Fitness Tracker iOS & Web App</h3>
-                                <span class="project-badge">Swift / React</span>
-                            </div>
-                            <p class="project-description">
-                                A native iOS application and React web app to track workouts, caloric intake, and fitness progress with REST APIs and persistent storage.
-                            </p>
-                            <div class="project-tech-tags">
-                                <span class="project-tech-tag">Swift</span>
-                                <span class="project-tech-tag">iOS</span>
-                                <span class="project-tech-tag">React</span>
-                            </div>
-                            <div class="expand-indicator">
-                                <span>View Details</span>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                </svg>
-                            </div>
+                    <div class="project-card" data-project="fitness">
+                        <div class="project-header">
+                            <h3 class="project-title">Fitness Tracker iOS & Web App</h3>
+                            <span class="project-badge">Swift / React</span>
                         </div>
-                        <div class="project-card-details">
-                            <div class="project-card-details-inner">
-                                <div class="project-detail-section">
-                                    <h4 class="project-detail-title">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                            <polyline points="14 2 14 8 20 8"></polyline>
-                                        </svg>
-                                        Overview
-                                    </h4>
-                                    <p class="project-detail-text">
-                                        A comprehensive fitness tracking application available as both a native iOS app and a React web application. The app helps users monitor their workouts, track caloric intake, and visualize their fitness progress over time with analytics and goal tracking features.
-                                    </p>
-                                </div>
-                                <div class="project-detail-section">
-                                    <h4 class="project-detail-title">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                        </svg>
-                                        Key Features
-                                    </h4>
-                                    <ul class="project-detail-list">
-                                        <li>Native iOS app built with Swift and SwiftUI</li>
-                                        <li>Track workouts with detailed exercise logging (sets, reps, weight)</li>
-                                        <li>Monitor caloric intake and nutritional macros</li>
-                                        <li>Visualize fitness progress with interactive charts</li>
-                                        <li>Set and track personal fitness goals</li>
-                                        <li>REST API integration for cross-platform data sync</li>
-                                        <li>Responsive web version for desktop access</li>
-                                    </ul>
-                                </div>
-                                <div class="project-detail-section">
-                                    <h4 class="project-detail-title">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                        </svg>
-                                        iOS Development
-                                    </h4>
-                                    <p class="project-detail-text">
-                                        The iOS application was built using Swift with SwiftUI for the user interface. Leveraged Apple's HealthKit for health data integration, Core Data for local persistence, and implemented smooth animations using SwiftUI's animation framework. The app follows Apple's Human Interface Guidelines for a native iOS experience.
-                                    </p>
-                                </div>
-                                <div class="project-detail-section">
-                                    <h4 class="project-detail-title">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <circle cx="12" cy="12" r="10"></circle>
-                                            <line x1="2" y1="12" x2="22" y2="12"></line>
-                                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                                        </svg>
-                                        Web Development
-                                    </h4>
-                                    <p class="project-detail-text">
-                                        The web version was developed using React with TypeScript for type-safe code. Implemented REST APIs for CRUD operations on workout and nutrition data. Used component-based architecture for reusability and state management for real-time UI updates. Chart.js provides interactive data visualization.
-                                    </p>
-                                </div>
-                                <div class="project-detail-section">
-                                    <h4 class="project-detail-title">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <polyline points="16 18 22 12 16 6"></polyline>
-                                            <polyline points="8 6 2 12 8 18"></polyline>
-                                        </svg>
-                                        Technologies Used
-                                    </h4>
-                                    <div class="project-tech-list">
-                                        <span class="project-tech-item">Swift</span>
-                                        <span class="project-tech-item">SwiftUI</span>
-                                        <span class="project-tech-item">iOS</span>
-                                        <span class="project-tech-item">HealthKit</span>
-                                        <span class="project-tech-item">Core Data</span>
-                                        <span class="project-tech-item">React</span>
-                                        <span class="project-tech-item">TypeScript</span>
-                                        <span class="project-tech-item">REST APIs</span>
-                                        <span class="project-tech-item">Chart.js</span>
-                                    </div>
-                                </div>
-                                <!-- Uncomment to add YouTube video:
-                                <div class="project-video-section">
-                                    <h4 class="project-detail-title">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                                </svg>
-                                        Demo Video
-                                    </h4>
-                                    <div class="project-video-container">
-                                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_HERE" title="Project Demo" allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                                -->
-                            </div>
+                        <p class="project-description">
+                            A native iOS application and React web app to track workouts, caloric intake, and fitness progress.
+                        </p>
+                        <div class="project-tech-tags">
+                            <span class="project-tech-tag">Swift</span>
+                            <span class="project-tech-tag">iOS</span>
+                            <span class="project-tech-tag">React</span>
+                        </div>
+                        <div class="click-hint">
+                            <span>Click for details</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
                         </div>
                     </div>
 
                     <!-- Gyroscope-Controlled Sports & Stock Ticker -->
-                    <div class="project-card" onclick="toggleProject(this)">
-                        <div class="project-card-preview">
+                    <div class="project-card" data-project="gyro">
                         <div class="project-header">
-                                <h3 class="project-title">Gyroscope-Controlled Sports & Stock Ticker</h3>
-                                <span class="project-badge">Embedded Systems</span>
+                            <h3 class="project-title">Gyroscope-Controlled Sports & Stock Ticker</h3>
+                            <span class="project-badge">Embedded Systems</span>
                         </div>
                         <p class="project-description">
-                                An embedded system controlled via gyroscopic input to navigate real-time sports and financial data on an LED matrix display.
-                            </p>
-                            <div class="project-tech-tags">
-                                <span class="project-tech-tag">Python</span>
-                                <span class="project-tech-tag">Hardware</span>
-                                <span class="project-tech-tag">APIs</span>
-                            </div>
-                            <div class="expand-indicator">
-                                <span>View Details</span>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                </svg>
-                            </div>
+                            An embedded system controlled via gyroscopic input to navigate real-time sports and financial data.
+                        </p>
+                        <div class="project-tech-tags">
+                            <span class="project-tech-tag">Python</span>
+                            <span class="project-tech-tag">Hardware</span>
+                            <span class="project-tech-tag">APIs</span>
                         </div>
-                        <div class="project-card-details">
-                            <div class="project-card-details-inner">
-                                <div class="project-detail-section">
-                                    <h4 class="project-detail-title">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                            <polyline points="14 2 14 8 20 8"></polyline>
-                                        </svg>
-                                        Overview
-                                    </h4>
-                                    <p class="project-detail-text">
-                                        An innovative embedded system project that uses gyroscopic sensor input for hands-free navigation between real-time sports scores and stock market data. The data is displayed on a custom LED matrix with optimized low-latency updates.
-                                    </p>
-                                </div>
-                                <div class="project-detail-section">
-                                    <h4 class="project-detail-title">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                        </svg>
-                                        Key Features
-                                    </h4>
-                                    <ul class="project-detail-list">
-                                        <li>Gyroscope-based navigation for hands-free control</li>
-                                        <li>Real-time sports scores from live APIs</li>
-                                        <li>Live stock market and financial data display</li>
-                                        <li>Custom LED matrix output with optimized rendering</li>
-                                        <li>Low-latency data polling and display updates</li>
-                                        <li>Modular architecture for easy customization</li>
-                                    </ul>
-                                </div>
-                                <div class="project-detail-section">
-                                    <h4 class="project-detail-title">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                        </svg>
-                                        How It Was Made
-                                    </h4>
-                                    <p class="project-detail-text">
-                                        Designed and implemented using Python with hardware integration libraries. The gyroscope sensor input is processed to navigate between data views. Live APIs are polled at optimized intervals to fetch sports and financial data, which is rendered on the LED matrix. Built with attention to latency optimization and power management.
-                                    </p>
-                                </div>
-                                <div class="project-detail-section">
-                                    <h4 class="project-detail-title">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <polyline points="16 18 22 12 16 6"></polyline>
-                                            <polyline points="8 6 2 12 8 18"></polyline>
-                                        </svg>
-                                        Technologies Used
-                                    </h4>
-                                    <div class="project-tech-list">
-                                        <span class="project-tech-item">Python</span>
-                                        <span class="project-tech-item">Embedded Systems</span>
-                                        <span class="project-tech-item">REST APIs</span>
-                                        <span class="project-tech-item">Gyroscope Sensor</span>
-                                        <span class="project-tech-item">LED Matrix</span>
-                                    </div>
-                                </div>
-                                <!-- Uncomment to add YouTube video:
-                                <div class="project-video-section">
-                                    <h4 class="project-detail-title">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                                </svg>
-                                        Demo Video
-                                    </h4>
-                                    <div class="project-video-container">
-                                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_HERE" title="Project Demo" allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                                -->
-                            </div>
+                        <div class="click-hint">
+                            <span>Click for details</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
                         </div>
                     </div>
 
                     <!-- Personal Home Server -->
-                    <div class="project-card" onclick="toggleProject(this)">
-                        <div class="project-card-preview">
+                    <div class="project-card" data-project="server">
                         <div class="project-header">
-                                <h3 class="project-title">Personal Home Server</h3>
-                                <span class="project-badge">Linux</span>
+                            <h3 class="project-title">Personal Home Server</h3>
+                            <span class="project-badge">Linux</span>
                         </div>
                         <p class="project-description">
-                                A Linux-based home server for web development, testing, and database hosting with full security management.
-                            </p>
-                            <div class="project-tech-tags">
-                                <span class="project-tech-tag">Linux</span>
-                                <span class="project-tech-tag">System Admin</span>
-                                <span class="project-tech-tag">Docker</span>
-                            </div>
-                            <div class="expand-indicator">
-                                <span>View Details</span>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                </svg>
-                            </div>
+                            A Linux-based home server for web development, testing, and database hosting with security management.
+                        </p>
+                        <div class="project-tech-tags">
+                            <span class="project-tech-tag">Linux</span>
+                            <span class="project-tech-tag">System Admin</span>
+                            <span class="project-tech-tag">Docker</span>
                         </div>
-                        <div class="project-card-details">
-                            <div class="project-card-details-inner">
-                                <div class="project-detail-section">
-                                    <h4 class="project-detail-title">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                            <polyline points="14 2 14 8 20 8"></polyline>
-                                        </svg>
-                                        Overview
-                                    </h4>
-                                    <p class="project-detail-text">
-                                        A self-hosted Linux server configured for web development, application testing, and database hosting. Includes comprehensive security configuration, automated backups, and monitoring for reliable 24/7 operation.
-                                    </p>
-                                </div>
-                                <div class="project-detail-section">
-                                    <h4 class="project-detail-title">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                        </svg>
-                                        Key Features
-                                    </h4>
-                                    <ul class="project-detail-list">
-                                        <li>Web development and testing environment</li>
-                                        <li>Database hosting (MySQL/PostgreSQL)</li>
-                                        <li>Web application deployment with Nginx</li>
-                                        <li>Comprehensive firewall and security configuration</li>
-                                        <li>Automated backup systems</li>
-                                        <li>Remote access and monitoring</li>
-                                    </ul>
-                                </div>
-                                <div class="project-detail-section">
-                                    <h4 class="project-detail-title">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                        </svg>
-                                        How It Was Made
-                                    </h4>
-                                    <p class="project-detail-text">
-                                        Set up on dedicated hardware with Ubuntu Server. Configured Nginx web server, MySQL and PostgreSQL databases, and Docker for containerized applications. Implemented security hardening including UFW firewall, fail2ban, and SSH key authentication. Established automated backup routines and system monitoring.
-                                    </p>
-                                </div>
-                                <div class="project-detail-section">
-                                    <h4 class="project-detail-title">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <polyline points="16 18 22 12 16 6"></polyline>
-                                            <polyline points="8 6 2 12 8 18"></polyline>
-                                        </svg>
-                                        Technologies Used
-                                    </h4>
-                                    <div class="project-tech-list">
-                                        <span class="project-tech-item">Linux (Ubuntu)</span>
-                                        <span class="project-tech-item">Nginx</span>
-                                        <span class="project-tech-item">MySQL</span>
-                                        <span class="project-tech-item">PostgreSQL</span>
-                                        <span class="project-tech-item">Docker</span>
-                                        <span class="project-tech-item">Bash</span>
-                                    </div>
-                                </div>
-                                <!-- Uncomment to add YouTube video:
-                                <div class="project-video-section">
-                                    <h4 class="project-detail-title">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                                </svg>
-                                        Demo Video
-                                    </h4>
-                                    <div class="project-video-container">
-                                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_HERE" title="Project Demo" allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                                -->
-                            </div>
+                        <div class="click-hint">
+                            <span>Click for details</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
                         </div>
                     </div>
 
                     <!-- Portfolio Website -->
-                    <div class="project-card" onclick="toggleProject(this)">
-                        <div class="project-card-preview">
+                    <div class="project-card" data-project="portfolio">
                         <div class="project-header">
                             <h3 class="project-title">Portfolio Website</h3>
                             <span class="project-badge">Web Development</span>
@@ -586,229 +367,58 @@
                         <p class="project-description">
                             A modern, responsive portfolio website showcasing my work and professional experience.
                         </p>
-                            <div class="project-tech-tags">
-                                <span class="project-tech-tag">HTML</span>
-                                <span class="project-tech-tag">CSS</span>
-                                <span class="project-tech-tag">JavaScript</span>
-                            </div>
-                            <div class="expand-indicator">
-                                <span>View Details</span>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                </svg>
-                            </div>
+                        <div class="project-tech-tags">
+                            <span class="project-tech-tag">HTML</span>
+                            <span class="project-tech-tag">CSS</span>
+                            <span class="project-tech-tag">JavaScript</span>
                         </div>
-                        <div class="project-card-details">
-                            <div class="project-card-details-inner">
-                                <div class="project-detail-section">
-                                    <h4 class="project-detail-title">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                            <polyline points="14 2 14 8 20 8"></polyline>
-                                        </svg>
-                                        Overview
-                                    </h4>
-                                    <p class="project-detail-text">
-                                        A modern, responsive portfolio website built from scratch to showcase professional work, projects, and experience. Features clean design, smooth animations, and optimal performance across all devices.
-                                    </p>
-                                </div>
-                                <div class="project-detail-section">
-                                    <h4 class="project-detail-title">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                        </svg>
-                                        Key Features
-                                    </h4>
-                                    <ul class="project-detail-list">
-                                        <li>Fully responsive design for all screen sizes</li>
-                                        <li>Modern UI with smooth animations and transitions</li>
-                                        <li>Interactive project showcase with expandable details</li>
-                                        <li>Integrated resume viewer with PDF support</li>
-                                        <li>SEO optimized for discoverability</li>
-                                        <li>Fast loading with optimized assets</li>
-                                    </ul>
-                                </div>
-                                <div class="project-detail-section">
-                                    <h4 class="project-detail-title">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                        </svg>
-                                        How It Was Made
-                                    </h4>
-                                    <p class="project-detail-text">
-                                        Built using vanilla HTML, CSS, and JavaScript for maximum performance and minimal dependencies. Implemented CSS Grid and Flexbox for responsive layouts, CSS custom properties for theming, and JavaScript for interactive elements. Focused on accessibility, semantic HTML, and progressive enhancement.
-                                    </p>
-                                </div>
-                                <div class="project-detail-section">
-                                    <h4 class="project-detail-title">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <polyline points="16 18 22 12 16 6"></polyline>
-                                            <polyline points="8 6 2 12 8 18"></polyline>
-                                        </svg>
-                                        Technologies Used
-                                    </h4>
-                                    <div class="project-tech-list">
-                                        <span class="project-tech-item">HTML5</span>
-                                        <span class="project-tech-item">CSS3</span>
-                                        <span class="project-tech-item">JavaScript</span>
-                                        <span class="project-tech-item">CSS Grid</span>
-                                        <span class="project-tech-item">Flexbox</span>
-                                    </div>
-                                </div>
-                                <!-- Uncomment to add YouTube video:
-                                <div class="project-video-section">
-                                    <h4 class="project-detail-title">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                                        </svg>
-                                        Demo Video
-                                    </h4>
-                                    <div class="project-video-container">
-                                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_HERE" title="Project Demo" allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                                -->
-                            </div>
+                        <div class="click-hint">
+                            <span>Click for details</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
                         </div>
                     </div>
 
                     <!-- Budget Tracker -->
-                    <div class="project-card" onclick="toggleProject(this)">
-                        <div class="project-card-preview">
-                            <div class="project-header">
-                                <h3 class="project-title">Budget Tracker</h3>
-                                <span class="project-badge">JavaScript</span>
-                            </div>
-                            <p class="project-description">
-                                A web application for tracking personal finances and budgeting with an intuitive interface.
-                            </p>
-                            <div class="project-tech-tags">
-                                <span class="project-tech-tag">JavaScript</span>
-                                <span class="project-tech-tag">HTML/CSS</span>
-                                <span class="project-tech-tag">Charts</span>
-                            </div>
-                            <div class="expand-indicator">
-                                <span>View Details</span>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                </svg>
-                            </div>
+                    <div class="project-card" data-project="budget">
+                        <div class="project-header">
+                            <h3 class="project-title">Budget Tracker</h3>
+                            <span class="project-badge">JavaScript</span>
                         </div>
-                        <div class="project-card-details">
-                            <div class="project-card-details-inner">
-                                <div class="project-detail-section">
-                                    <h4 class="project-detail-title">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                            <polyline points="14 2 14 8 20 8"></polyline>
-                                        </svg>
-                                        Overview
-                                    </h4>
-                                    <p class="project-detail-text">
-                                        A personal finance application that helps users track expenses, set budgets, and visualize their spending patterns. Designed with an intuitive interface for users without financial backgrounds to easily manage their money.
-                                    </p>
-                                </div>
-                                <div class="project-detail-section">
-                                    <h4 class="project-detail-title">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                        </svg>
-                                        Key Features
-                                    </h4>
-                                    <ul class="project-detail-list">
-                                        <li>Expense tracking with category organization</li>
-                                        <li>Budget creation and monitoring</li>
-                                        <li>Visual spending reports and charts</li>
-                                        <li>Income and expense balance tracking</li>
-                                        <li>Monthly and yearly financial summaries</li>
-                                        <li>Data export capabilities</li>
-                                    </ul>
-                                </div>
-                                <div class="project-detail-section">
-                                    <h4 class="project-detail-title">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                                        </svg>
-                                        How It Was Made
-                                    </h4>
-                                    <p class="project-detail-text">
-                                        Developed using vanilla JavaScript with a focus on user experience and financial management best practices. Implemented local storage for data persistence, dynamic UI updates for real-time feedback, and Chart.js for data visualization. The interface was designed to be intuitive and accessible.
-                                    </p>
-                                </div>
-                                <div class="project-detail-section">
-                                    <h4 class="project-detail-title">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <polyline points="16 18 22 12 16 6"></polyline>
-                                            <polyline points="8 6 2 12 8 18"></polyline>
-                                        </svg>
-                                        Technologies Used
-                                    </h4>
-                                    <div class="project-tech-list">
-                                        <span class="project-tech-item">JavaScript</span>
-                                        <span class="project-tech-item">HTML5</span>
-                                        <span class="project-tech-item">CSS3</span>
-                                        <span class="project-tech-item">Chart.js</span>
-                                        <span class="project-tech-item">Local Storage</span>
-                                    </div>
-                                </div>
-                                <!-- Uncomment to add YouTube video:
-                                <div class="project-video-section">
-                                    <h4 class="project-detail-title">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                                </svg>
-                                        Demo Video
-                                    </h4>
-                                    <div class="project-video-container">
-                                        <iframe src="https://www.youtube.com/embed/VIDEO_ID_HERE" title="Project Demo" allowfullscreen></iframe>
-                                    </div>
-                                </div>
-                                -->
-                            </div>
+                        <p class="project-description">
+                            A web application for tracking personal finances and budgeting with an intuitive interface.
+                        </p>
+                        <div class="project-tech-tags">
+                            <span class="project-tech-tag">JavaScript</span>
+                            <span class="project-tech-tag">HTML/CSS</span>
+                            <span class="project-tech-tag">Charts</span>
+                        </div>
+                        <div class="click-hint">
+                            <span>Click for details</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
                         </div>
                     </div>
 
                     <!-- Pathology EMR Case Management -->
-                    <div class="project-card" onclick="toggleProject(this)">
-                        <div class="project-card-preview">
-                            <div class="project-header">
-                                <h3 class="project-title">Pathology EMR Case Management</h3>
-                                <span class="project-badge">Healthcare</span>
-                            </div>
-                            <p class="project-description">
-                                A comprehensive electronic medical records system for pathology case management and workflow optimization.
-                            </p>
-                            <div class="project-tech-tags">
-                                <span class="project-tech-tag">In Development</span>
-                            </div>
-                            <div class="expand-indicator">
-                                <span>View Details</span>
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polyline points="6 9 12 15 18 9"></polyline>
-                                </svg>
-                            </div>
+                    <div class="project-card" data-project="emr">
+                        <div class="project-header">
+                            <h3 class="project-title">Pathology EMR Case Management</h3>
+                            <span class="project-badge">Healthcare</span>
                         </div>
-                        <div class="project-card-details">
-                            <div class="project-card-details-inner">
-                                <div class="project-detail-section">
-                                    <h4 class="project-detail-title">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                            <circle cx="12" cy="12" r="10"></circle>
-                                            <line x1="12" y1="8" x2="12" y2="12"></line>
-                                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
-                                        </svg>
-                                        Status
-                                    </h4>
-                                    <p class="project-detail-text" style="font-size: 1.1rem; font-weight: 500; color: var(--primary-color);">
-                                        Currently in Development
-                                    </p>
-                                    <p class="project-detail-text" style="margin-top: 1rem;">
-                                        More details will be available once the project reaches a stable development milestone.
-                                    </p>
-                                </div>
-                            </div>
+                        <p class="project-description">
+                            A comprehensive electronic medical records system for pathology case management and workflow optimization.
+                        </p>
+                        <div class="project-tech-tags">
+                            <span class="project-tech-tag">In Development</span>
+                        </div>
+                        <div class="click-hint">
+                            <span>Click for details</span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="9 18 15 12 9 6"></polyline>
+                            </svg>
                         </div>
                     </div>
                 </div>
@@ -820,6 +430,23 @@
         </section>
     </main>
 
+    <!-- Full Screen Modal -->
+    <div class="project-modal-backdrop" id="projectModal">
+        <div class="project-modal-card">
+            <button class="modal-close-btn" id="closeModal">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle"></h2>
+                <div class="modal-badges" id="modalBadges"></div>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
     <footer class="footer">
         <div class="container">
             <p>&copy; 2025 Campbell Wright. All rights reserved.</p>
@@ -828,16 +455,253 @@
 
     <script src="script.js"></script>
     <script>
-        function toggleProject(card) {
-            // Close any other open cards
-            document.querySelectorAll('.project-card.expanded').forEach(function(openCard) {
-                if (openCard !== card) {
-                    openCard.classList.remove('expanded');
-                }
-            });
-            // Toggle the clicked card
-            card.classList.toggle('expanded');
+        // Project Data
+        const projects = {
+            fantasy: {
+                title: 'Fantasy Sports Probability Calculator',
+                badges: ['Python', 'Data Analysis', 'Statistics'],
+                sections: [
+                    {
+                        icon: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline>',
+                        title: 'Overview',
+                        content: '<p class="modal-text">This project analyzes historical fantasy sports data to calculate probability distributions for player performance. Using statistical models and historical trends, it helps fantasy sports enthusiasts make data-driven decisions when drafting players or setting lineups.</p>'
+                    },
+                    {
+                        icon: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>',
+                        title: 'Key Features',
+                        content: '<ul class="modal-list"><li>Analyzes historical player performance data across multiple seasons</li><li>Applies statistical models to forecast outcomes and scoring trends</li><li>Generates probability distributions for player point projections</li><li>Supports multiple fantasy sports formats (PPR, Standard, etc.)</li><li>Outputs visual reports and exportable predictions</li></ul>'
+                    },
+                    {
+                        icon: '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline>',
+                        title: 'How It Was Made',
+                        content: '<p class="modal-text">Built using Python with pandas for data manipulation and scipy/numpy for statistical analysis. The application cleans and normalizes historical data, then applies regression analysis and probability distributions to generate predictions. Matplotlib provides data visualization capabilities.</p>'
+                    },
+                    {
+                        icon: '<polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline>',
+                        title: 'Technologies Used',
+                        content: '<div class="modal-tech-list"><span class="modal-tech-item">Python</span><span class="modal-tech-item">pandas</span><span class="modal-tech-item">NumPy</span><span class="modal-tech-item">SciPy</span><span class="modal-tech-item">Matplotlib</span></div>'
+                    }
+                ]
+            },
+            fitness: {
+                title: 'Fitness Tracker iOS & Web Application',
+                badges: ['Swift', 'iOS', 'React', 'Full-Stack'],
+                sections: [
+                    {
+                        icon: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline>',
+                        title: 'Overview',
+                        content: '<p class="modal-text">A comprehensive fitness tracking application available as both a native iOS app and a React web application. The app helps users monitor their workouts, track caloric intake, and visualize their fitness progress over time with analytics and goal tracking features.</p>'
+                    },
+                    {
+                        icon: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>',
+                        title: 'Key Features',
+                        content: '<ul class="modal-list"><li>Native iOS app built with Swift and SwiftUI</li><li>Track workouts with detailed exercise logging (sets, reps, weight)</li><li>Monitor caloric intake and nutritional macros</li><li>Visualize fitness progress with interactive charts</li><li>Set and track personal fitness goals</li><li>REST API integration for cross-platform data sync</li><li>Responsive web version for desktop access</li></ul>'
+                    },
+                    {
+                        icon: '<rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line>',
+                        title: 'iOS Development',
+                        content: '<p class="modal-text">The iOS application was built using Swift with SwiftUI for the user interface. Leveraged Apple\'s HealthKit for health data integration, Core Data for local persistence, and implemented smooth animations using SwiftUI\'s animation framework. The app follows Apple\'s Human Interface Guidelines for a native iOS experience.</p>'
+                    },
+                    {
+                        icon: '<circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>',
+                        title: 'Web Development',
+                        content: '<p class="modal-text">The web version was developed using React with TypeScript for type-safe code. Implemented REST APIs for CRUD operations on workout and nutrition data. Used component-based architecture for reusability and state management for real-time UI updates. Chart.js provides interactive data visualization.</p>'
+                    },
+                    {
+                        icon: '<polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline>',
+                        title: 'Technologies Used',
+                        content: '<div class="modal-tech-list"><span class="modal-tech-item">Swift</span><span class="modal-tech-item">SwiftUI</span><span class="modal-tech-item">iOS</span><span class="modal-tech-item">HealthKit</span><span class="modal-tech-item">Core Data</span><span class="modal-tech-item">React</span><span class="modal-tech-item">TypeScript</span><span class="modal-tech-item">REST APIs</span><span class="modal-tech-item">Chart.js</span></div>'
+                    }
+                ]
+            },
+            gyro: {
+                title: 'Gyroscope-Controlled Sports & Stock Ticker',
+                badges: ['Embedded Systems', 'Python', 'Hardware'],
+                sections: [
+                    {
+                        icon: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline>',
+                        title: 'Overview',
+                        content: '<p class="modal-text">An innovative embedded system project that uses gyroscopic sensor input for hands-free navigation between real-time sports scores and stock market data. The data is displayed on a custom LED matrix with optimized low-latency updates.</p>'
+                    },
+                    {
+                        icon: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>',
+                        title: 'Key Features',
+                        content: '<ul class="modal-list"><li>Gyroscope-based navigation for hands-free control</li><li>Real-time sports scores from live APIs</li><li>Live stock market and financial data display</li><li>Custom LED matrix output with optimized rendering</li><li>Low-latency data polling and display updates</li><li>Modular architecture for easy customization</li></ul>'
+                    },
+                    {
+                        icon: '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline>',
+                        title: 'How It Was Made',
+                        content: '<p class="modal-text">Designed and implemented using Python with hardware integration libraries. The gyroscope sensor input is processed to navigate between data views. Live APIs are polled at optimized intervals to fetch sports and financial data, which is rendered on the LED matrix. Built with attention to latency optimization and power management.</p>'
+                    },
+                    {
+                        icon: '<polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline>',
+                        title: 'Technologies Used',
+                        content: '<div class="modal-tech-list"><span class="modal-tech-item">Python</span><span class="modal-tech-item">Embedded Systems</span><span class="modal-tech-item">REST APIs</span><span class="modal-tech-item">Gyroscope Sensor</span><span class="modal-tech-item">LED Matrix</span></div>'
+                    }
+                ]
+            },
+            server: {
+                title: 'Personal Home Server',
+                badges: ['Linux', 'System Administration', 'DevOps'],
+                sections: [
+                    {
+                        icon: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline>',
+                        title: 'Overview',
+                        content: '<p class="modal-text">A self-hosted Linux server configured for web development, application testing, and database hosting. Includes comprehensive security configuration, automated backups, and monitoring for reliable 24/7 operation.</p>'
+                    },
+                    {
+                        icon: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>',
+                        title: 'Key Features',
+                        content: '<ul class="modal-list"><li>Web development and testing environment</li><li>Database hosting (MySQL/PostgreSQL)</li><li>Web application deployment with Nginx</li><li>Comprehensive firewall and security configuration</li><li>Automated backup systems</li><li>Remote access and monitoring</li></ul>'
+                    },
+                    {
+                        icon: '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline>',
+                        title: 'How It Was Made',
+                        content: '<p class="modal-text">Set up on dedicated hardware with Ubuntu Server. Configured Nginx web server, MySQL and PostgreSQL databases, and Docker for containerized applications. Implemented security hardening including UFW firewall, fail2ban, and SSH key authentication. Established automated backup routines and system monitoring.</p>'
+                    },
+                    {
+                        icon: '<polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline>',
+                        title: 'Technologies Used',
+                        content: '<div class="modal-tech-list"><span class="modal-tech-item">Linux (Ubuntu)</span><span class="modal-tech-item">Nginx</span><span class="modal-tech-item">MySQL</span><span class="modal-tech-item">PostgreSQL</span><span class="modal-tech-item">Docker</span><span class="modal-tech-item">Bash</span></div>'
+                    }
+                ]
+            },
+            portfolio: {
+                title: 'Portfolio Website',
+                badges: ['Web Development', 'HTML/CSS', 'JavaScript'],
+                sections: [
+                    {
+                        icon: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline>',
+                        title: 'Overview',
+                        content: '<p class="modal-text">A modern, responsive portfolio website built from scratch to showcase professional work, projects, and experience. Features clean design, smooth animations, and optimal performance across all devices.</p>'
+                    },
+                    {
+                        icon: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>',
+                        title: 'Key Features',
+                        content: '<ul class="modal-list"><li>Fully responsive design for all screen sizes</li><li>Modern UI with smooth animations and transitions</li><li>Interactive project showcase with modal details</li><li>Integrated resume viewer with PDF support</li><li>SEO optimized for discoverability</li><li>Fast loading with optimized assets</li></ul>'
+                    },
+                    {
+                        icon: '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline>',
+                        title: 'How It Was Made',
+                        content: '<p class="modal-text">Built using vanilla HTML, CSS, and JavaScript for maximum performance and minimal dependencies. Implemented CSS Grid and Flexbox for responsive layouts, CSS custom properties for theming, and JavaScript for interactive elements. Focused on accessibility, semantic HTML, and progressive enhancement.</p>'
+                    },
+                    {
+                        icon: '<polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline>',
+                        title: 'Technologies Used',
+                        content: '<div class="modal-tech-list"><span class="modal-tech-item">HTML5</span><span class="modal-tech-item">CSS3</span><span class="modal-tech-item">JavaScript</span><span class="modal-tech-item">CSS Grid</span><span class="modal-tech-item">Flexbox</span></div>'
+                    }
+                ]
+            },
+            budget: {
+                title: 'Budget Tracker',
+                badges: ['JavaScript', 'Web App', 'Finance'],
+                sections: [
+                    {
+                        icon: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline>',
+                        title: 'Overview',
+                        content: '<p class="modal-text">A personal finance application that helps users track expenses, set budgets, and visualize their spending patterns. Designed with an intuitive interface for users without financial backgrounds to easily manage their money.</p>'
+                    },
+                    {
+                        icon: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>',
+                        title: 'Key Features',
+                        content: '<ul class="modal-list"><li>Expense tracking with category organization</li><li>Budget creation and monitoring</li><li>Visual spending reports and charts</li><li>Income and expense balance tracking</li><li>Monthly and yearly financial summaries</li><li>Data export capabilities</li></ul>'
+                    },
+                    {
+                        icon: '<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline>',
+                        title: 'How It Was Made',
+                        content: '<p class="modal-text">Developed using vanilla JavaScript with a focus on user experience and financial management best practices. Implemented local storage for data persistence, dynamic UI updates for real-time feedback, and Chart.js for data visualization. The interface was designed to be intuitive and accessible.</p>'
+                    },
+                    {
+                        icon: '<polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline>',
+                        title: 'Technologies Used',
+                        content: '<div class="modal-tech-list"><span class="modal-tech-item">JavaScript</span><span class="modal-tech-item">HTML5</span><span class="modal-tech-item">CSS3</span><span class="modal-tech-item">Chart.js</span><span class="modal-tech-item">Local Storage</span></div>'
+                    }
+                ]
+            },
+            emr: {
+                title: 'Pathology EMR Case Management',
+                badges: ['Healthcare', 'In Development'],
+                sections: [
+                    {
+                        icon: '<circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line>',
+                        title: 'Status',
+                        content: '<div style="text-align: center; padding: 2rem 0;"><span class="status-badge">Currently in Development</span><p class="modal-text" style="margin-top: 1.5rem;">More details will be available once the project reaches a stable development milestone.</p></div>'
+                    }
+                ]
+            }
+        };
+
+        // Modal Elements
+        const modal = document.getElementById('projectModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBadges = document.getElementById('modalBadges');
+        const modalBody = document.getElementById('modalBody');
+        const closeBtn = document.getElementById('closeModal');
+
+        // Open Modal
+        function openModal(projectKey) {
+            const project = projects[projectKey];
+            if (!project) return;
+
+            // Set title
+            modalTitle.textContent = project.title;
+
+            // Set badges
+            modalBadges.innerHTML = project.badges.map(badge => 
+                `<span class="project-badge">${badge}</span>`
+            ).join('');
+
+            // Set body content
+            modalBody.innerHTML = project.sections.map(section => `
+                <div class="modal-section">
+                    <h3 class="modal-section-title">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            ${section.icon}
+                        </svg>
+                        ${section.title}
+                    </h3>
+                    ${section.content}
+                </div>
+            `).join('');
+
+            // Show modal
+            modal.style.display = 'flex';
+            // Trigger reflow for animation
+            modal.offsetHeight;
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
         }
+
+        // Close Modal
+        function closeModal() {
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+
+        // Event Listeners
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const projectKey = card.getAttribute('data-project');
+                openModal(projectKey);
+            });
+        });
+
+        closeBtn.addEventListener('click', closeModal);
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.classList.contains('show')) {
+                closeModal();
+            }
+        });
     </script>
 </body>
 </html>
