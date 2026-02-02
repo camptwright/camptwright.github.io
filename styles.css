@@ -500,33 +500,18 @@ section {
 .project-card {
     background: white;
     border-radius: 12px;
-    padding: 2rem;
+    padding: 0;
     box-shadow: var(--shadow-md);
     transition: var(--transition);
     display: flex;
     flex-direction: column;
     cursor: pointer;
     position: relative;
+    overflow: hidden;
 }
 
 .project-card:hover {
-    transform: translateY(-5px);
     box-shadow: var(--shadow-lg);
-}
-
-.project-card::after {
-    content: 'Click for details';
-    position: absolute;
-    bottom: 1rem;
-    right: 1rem;
-    font-size: 0.75rem;
-    color: var(--text-secondary);
-    opacity: 0;
-    transition: var(--transition);
-}
-
-.project-card:hover::after {
-    opacity: 1;
 }
 
 .project-header {
@@ -603,12 +588,12 @@ section {
     right: 0;
     bottom: 0;
     background: rgba(0, 0, 0, 0.7);
-    display: flex;
     justify-content: center;
     align-items: center;
     z-index: 2000;
     opacity: 0;
     visibility: hidden;
+    display: none;
     transition: all 0.3s ease;
     padding: 2rem;
 }
@@ -616,6 +601,7 @@ section {
 .project-modal-overlay.active {
     opacity: 1;
     visibility: visible;
+    display: flex;
 }
 
 .project-modal {
