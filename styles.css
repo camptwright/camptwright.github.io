@@ -835,7 +835,7 @@ section { padding: 5rem 0; }
     color: var(--text-muted);
 }
 
-.project-links {
+.project-tech-tags {
     display: flex;
     gap: 0.625rem;
     flex-wrap: wrap;
