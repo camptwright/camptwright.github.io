@@ -1,5 +1,5 @@
 /* ================================================================
-   styles.css — Campbell Wright Portfolio
+   styles.css - Campbell Wright Portfolio
    ================================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800;1,14..32,400&display=swap');
@@ -14,7 +14,7 @@
 }
 
 /* ----------------------------------------------------------------
-   Theme variables — dark default
+   Theme variables - dark default
 ---------------------------------------------------------------- */
 :root {
     --bg-primary:    #0f1117;

@@ -1,5 +1,5 @@
 /* ================================================================
-   script.js — Campbell Wright Portfolio
+   script.js - Campbell Wright Portfolio
 ================================================================ */
 
 (function () {
@@ -80,7 +80,7 @@
     }
 
     // ----------------------------------------------------------------
-    // Intersection Observer — fade-up animations
+    // Intersection Observer for fade-up animations
     // ----------------------------------------------------------------
     function initScrollAnimations() {
         const els = document.querySelectorAll('.fade-up');
